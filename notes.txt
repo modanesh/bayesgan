@@ -1,0 +1,16 @@
+MC samples for generator and discriminator
+	J_g = 10
+	J_d = 1
+
+Number of iterations for SGHMC
+	M = 2
+
+Number of mini-batch samples
+	n_d = n_g = 64
+
+
+
+
+--num_disc: same as J_D in the paper; number of samples of z to integrate it out for discriminators; default 1
+--num_mcmc: same as M in the paper; number of MCMC NN weight samples per z; default 1
+--batch_size: batch size for training; default 64
