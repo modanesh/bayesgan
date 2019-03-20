@@ -1,0 +1,9 @@
+Experiment settings:
+{'numz': 10,
+ 'out_dir': 'results/',
+ 'random_seed': 2222,
+ 'save_weights': False,
+ 'train_iter': 1000,
+ 'wasserstein': False,
+ 'x_dim': 100,
+ 'z_dim': 10}

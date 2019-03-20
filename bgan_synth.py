@@ -91,11 +91,11 @@ def bgan_synth(synth_dataset, z_dim, batch_size=64, numz=5, num_iter=1000,
                 num_classes=1,
                 wasserstein=wasserstein, # unsupervised only
                 )
-    print "Starting session"
+    print("Starting session")
     session = get_session()
     tf.global_variables_initializer().run()
 
-    print "Starting training loop"
+    print("Starting training loop")
         
     num_train_iter = num_iter
 
@@ -107,7 +107,7 @@ def bgan_synth(synth_dataset, z_dim, batch_size=64, numz=5, num_iter=1000,
 
         learning_rate = base_learning_rate * np.exp(-lr_decay *
                                                     min(1.0, (train_iter*batch_size)/float(synth_dataset.N)))
-        print learning_rate
+        print(learning_rate)
         
         batch_z = np.random.uniform(-1, 1, [batch_size, z_dim])
         
@@ -128,11 +128,11 @@ def bgan_synth(synth_dataset, z_dim, batch_size=64, numz=5, num_iter=1000,
                                                bgan.g_learning_rate: learning_rate})
             g_losses.append(g_loss)
 
-        print "Disc loss = %.2f, Gen loss = %s" % (d_loss, ", ".join(["%.2f" % gl for gl in g_losses]))
+        print("Disc loss = %.2f, Gen loss = %s" % (d_loss, ", ".join(["%.2f" % gl for gl in g_losses])))
 
         if (train_iter + 1) % 100 == 0:
-            print "Disc loss = %.2f, Gen loss = %s" % (d_loss, ", ".join(["%.2f" % gl for gl in g_losses]))
-            print "Running GMM on sampled data"
+            print("Disc loss = %.2f, Gen loss = %s" % (d_loss, ", ".join(["%.2f" % gl for gl in g_losses])))
+            print("Running GMM on sampled data")
             fake_data = []
             for num_samples in xrange(10):
                 for gi in xrange(bgan.num_gen):
@@ -147,9 +147,9 @@ def bgan_synth(synth_dataset, z_dim, batch_size=64, numz=5, num_iter=1000,
             all_data_fake.append(X_sample)
 
             aics_fake = gmm_ms(X_sample)
-            print "Fake number of clusters (AIC estimate):", aics_fake.argmin()
+            print("Fake number of clusters (AIC estimate):", aics_fake.argmin())
             dist, X_trans_real, X_trans_fake = analyze_div(X_real, X_sample)
-            print "JS div:", dist
+            print("JS div:", dist)
             fp = FigPrinter((1,2))
             xmin1 = np.min(X_trans_real[:, 0]) - 1.0
             xmax1 = np.max(X_trans_real[:, 0]) + 1.0
@@ -233,7 +233,7 @@ if __name__ == "__main__":
         tf.set_random_seed(args.random_seed)
 
     if not os.path.exists(args.out_dir):
-        print "Creating %s" % args.out_dir
+        print("Creating %s" % args.out_dir)
         os.makedirs(args.out_dir)
 
     results_path = os.path.join(args.out_dir, "experiment_%i" % (int(time.time())))

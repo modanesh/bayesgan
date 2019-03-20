@@ -16,4 +16,4 @@ Number of hidden layers in G and D
 --num_disc: same as J_D in the paper; number of samples of z to integrate it out for discriminators; default 1
 --num_mcmc: same as M in the paper; number of MCMC NN weight samples per z; default 1
 --batch_size: batch size for training; default 64
---num_layers: number of layers for G and D nets which are 5 in the paper
+--num_layers: number of layers for G and D nets which are 5 in the paper; default 4
